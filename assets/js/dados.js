@@ -7,10 +7,14 @@ socket.on('posts', msg => {
 socket.on('menu', msg => {  
 	loadMenu()
 })
+socket.on('tema', msg => {  
+	loadMenu()
+})
 
 
 
 $(()=>{
+	theme()
 	loadMenu()
 	loadPosts()
 })
@@ -292,4 +296,16 @@ const formatPrice = value =>{
 	if (!val) return '0,00';
 	const valueString = val.toFixed(2).replace(".", ",");
 	return valueString.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+const theme = () =>{
+	$.ajax({
+		url: `${host}/site/tema`,
+		type: 'get',
+		dataType: 'json'
+	}).then(response => {
+		let dados = response[0]
+		$('.tema').text(dados.tema)
+		$('.tema-description').text( dados.description )
+	})
 }
