@@ -7,12 +7,21 @@ const loadMenu = () => {
 		dataType: 'json'
 	}).then(response => {
 		$('.nav-menu').html('')
-		const item = response.map( m =>{
-			return $('<li>')
-			.append( $('<a>').attr('href',m.url).append( m.name ) )
+		var item = ''
+		response.forEach( m =>{
+			item += `<li>
+						<a href="${m.url}">${m.name}</a>
+			        </li>`
 		} )
+		console.log('item',item);
 		
 		$('.nav-menu').html( item )
+		$('#mobile-nav').html(
+			`<ul class style="touch-action: pan-y;" id>
+				${item}
+			</ul>`
+
+		)
 	})
 	
 }

@@ -13,6 +13,7 @@ const searchParams = new URLSearchParams(window.location.search)
 
 $(()=>{
     searchData()
+    loadMenu()
 })
 const searchData = () => {
     let param = searchParams.get( 'id' )
@@ -28,7 +29,7 @@ const searchData = () => {
         $('.description').html( `${response.description}` )
         
         if( response.logo )
-            $('.img').html(`<img src="${host}/foto/${response.logo}">`)
+            $('.img').html(`<img src="${host}/foto/${response.logo}" class="img-fluid">`)
         team( response.id )
     })
 }
@@ -70,4 +71,12 @@ const team = id => {
             $('.equipe').append( item )
         }
     })
+}
+
+const loadMenu = () =>{
+    $('#mobile-nav').html(
+        `<ul class style="touch-action: pan-y;" id>
+            <li class="menu-active"><a href="/">Voltar</a></li>
+        </ul>`
+    )
 }

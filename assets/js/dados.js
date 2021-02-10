@@ -8,7 +8,7 @@ socket.on('menu', msg => {
 	loadMenu()
 })
 socket.on('tema', msg => {  
-	loadMenu()
+	theme()
 })
 
 

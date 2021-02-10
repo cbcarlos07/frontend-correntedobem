@@ -6,12 +6,18 @@ socket.on('meta', msg => {
 })
 
 
-
-
-
 $(()=>{
     searchData()
+    loadMenu()
 })
+
+const loadMenu = () =>{
+    $('#mobile-nav').html(
+        `<ul class style="touch-action: pan-y;" id>
+            <li class="menu-active"><a href="/">Voltar</a></li>
+        </ul>`
+    )
+}
 const searchData = () => {
     
     $.ajax({
@@ -24,9 +30,9 @@ const searchData = () => {
         $('.description').html( `${dados.description}` )
         
         if( dados.logo )
-            $('.logo').html(`<img src="${host}/foto/${dados.logo}">`)
+            $('.logo').html(`<img src="${host}/foto/${dados.logo}" class="img-fluid">`)
         if( dados.image )
-            $('.img').html(`<img src="${host}/foto/${dados.image}">`)
+            $('.img').html(`<img src="${host}/foto/${dados.image}" class="img-fluid">`)
         
     })
 }
