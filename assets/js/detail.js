@@ -36,7 +36,7 @@ const searchData = () => {
 
 const team = id => {
     $.ajax({
-        url: `${host}/ste/equipe/${id}`,
+        url: `${host}/site/equipe/${id}`,
         type: 'get',
         dataType: 'json'
     }).then(response => {
