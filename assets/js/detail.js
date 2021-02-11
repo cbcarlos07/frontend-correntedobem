@@ -44,16 +44,17 @@ const team = id => {
         let item = ''
         response.forEach(element => {
             let team = ''
-            if(element.team){
+            
+
+            if( element.team ){
+                
                 
                 element.team.forEach(t => {
                     team += `
                         <li>${t.name}</li>
                     `
                 })
-            }
-
-            if( element.team ){
+                
                 item += `<li>
                             <strong>${element.name}</strong>
                             <ul style="list-style-type:none;">
