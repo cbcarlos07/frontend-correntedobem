@@ -1,4 +1,4 @@
-const socket = io('http://localhost:3006')
+const socket = io(host)
 
 
 socket.on('posts', msg => {  
