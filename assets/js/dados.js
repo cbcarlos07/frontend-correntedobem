@@ -33,35 +33,50 @@ const loadPosts = () => {
 		$('#main').html('')
 		response.forEach(element => {
 			let subarea = ''
+			let logo = ''
+			if( element.logo ){
+				logo = `
+				<div class="row">
+					<div class="col-12">
+						<div class="text-center">
+							<img class="img img-fluid" src="${host}/foto/${element.logo}">
+						</div>
+					</div>
+				</div>
+				`
+			}
 			if( element.subarea ) {
 				element.subarea.forEach(el => {
 					subarea += `
 					<div class="col-lg-4 col-md-6" data-aos="zoom-in">
-					<div class="box">
-					<div ><a href="detalhe.html?id=${el.id}"> <img src="${host}/foto/${el.icon}"> </a></div>
-					<h4 class="title"><a href="detalhe.html?id=${el.id}">${el.title}</a></h4>
-					<p class="description">${el.description.slice(0,200)}...</p>
-					</div>
+						<div class="box">
+							<div class="icon"><a href="detalhe.html?id=${el.id}"> <img src="${host}/foto/${el.icon}"> </a></div>
+							<h4 class="title"><a href="detalhe.html?id=${el.id}">${el.title}</a></h4>
+							<p class="description">${el.description.slice(0,120)}...</p>
+						</div>
 					</div>`
 					
 				});
 			}
 			item += `
 			<section id="${element.url}">
-			<div class="container" data-aos="fade-up">
-			<div class="row about-container">
-			<div class="col-lg-12 content order-lg-1 order-2">
-			<div class="section-header">
-			<h3 class="section-title">${element.title}</h3>              
-			<p class="section-description">${element.description}</p>
-			</div>
-			<div class="row">
-			${subarea}
-			</div>
-			</div>                    
-			</div>
-			
-			</div>
+				<div class="container" data-aos="fade-up">
+					<div class="row about-container">
+						<div class="col-lg-12 content order-lg-1 order-2">
+							<div class="section-header">
+								<h3 class="section-title">${element.title}</h3>              
+								<p class="section-description">${element.description}</p>
+							</div>
+							${logo}
+							<div class="row">
+								${subarea}
+							</div>
+						</div> 
+						
+						
+					</div>
+				
+				</div>
 			</section>
 			`
 		});
@@ -143,7 +158,7 @@ const loadPosts = () => {
 						<div class="sent-message text-red">Your message has been sent. Thank you!</div>
 					</div>
 
-					<div class="text-center"><button type="submit">Send Message</button></div>
+					<div class="text-center"><button type="submit">Enviar mensagem</button></div>
 
 				</form>
 			</div>
@@ -196,7 +211,7 @@ const sendMessage = (e) => {
 			dataType: 'json',
 			data: param
 		}).then(response => {
-			console.log('response');
+			
 			alert( 'Agradecemos seu contato' )
 			$('#name').val('')
 			$('#email').val('')
@@ -227,7 +242,7 @@ const redesSociais = () => {
 			.addClass( r.rede )
 			.append( $('<i>').addClass(`fa fa-${r.rede}`) )
 		})
-		console.log(links);
+		
 		$('.social-links').append( links )
 	})
 }
@@ -269,19 +284,20 @@ const valores = () => {
 	}).then(response => {
 		let dados = `
 		<div class="section-header">
-		<h3 class="section-title">Transparência</h3>
-		<p class="section-description">${response[0].description}</p>
+			<h3 class="section-title">Transparência</h3>
+			<p class="section-description">${response[0].description}</p>
 		</div>
+
 		<div class="row counters">
-		<div class="col-lg-6 col-6 text-center">
-		<span data-toggle="counter-up">R$ ${formatPrice( String( response[0].value ) )}</span>
-		<p>Arrecadado</p>
-		</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12col-6 text-center">
+				<span data-toggle="counter-up">R$ ${formatPrice( String( response[0].value ) )}</span>
+				<p>Arrecadado</p>
+			</div>
 		
-		<div class="col-lg-6 col-6 text-center">
-		<span data-toggle="counter-up">R$ ${formatPrice( String( response[0].spent ) )}</span>
-		<p>Despesa</p>
-		</div>
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12col-6 text-center">
+				<span data-toggle="counter-up">R$ ${formatPrice( String( response[0].spent ) )}</span>
+				<p>Despesa</p>
+			</div>
 		
 		
 		</div>
@@ -306,6 +322,7 @@ const theme = () =>{
 	}).then(response => {
 		let dados = response[0]
 		$('.tema').text(dados.tema)
-		$('.tema-description').text( dados.description )
+		$('.tema-description').text( dados.description )		
+		$('#hero').css({background: `url(${host}/foto/${dados.image}) `})
 	})
 }

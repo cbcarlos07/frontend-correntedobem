@@ -13,7 +13,7 @@ const loadMenu = () => {
 						<a href="${m.url}">${m.name}</a>
 			        </li>`
 		} )
-		console.log('item',item);
+		//console.log('item',item);
 		
 		$('.nav-menu').html( item )
 		$('#mobile-nav').html(
