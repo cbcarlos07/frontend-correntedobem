@@ -47,6 +47,7 @@ const loadPosts = () => {
 			}
 			if( element.subarea ) {
 				element.subarea.forEach(el => {
+					let desc = el.short_text || `${el.description.slice(0,120)}...`
 					subarea += `
 					<div class="col-lg-4 col-md-6" data-aos="zoom-in">
 						<div class="box">
@@ -54,7 +55,7 @@ const loadPosts = () => {
 								<img style="border-radius: 150%" src="${host}/foto/${el.icon}" width="50"> </a>
 							</div>
 							<h4 class="title"><a href="detalhe.html?id=${el.id}">${el.title}</a></h4>
-							<p class="description">${el.short_text || '' }</p>
+							<p class="description">${desc}</p>
 						</div>
 					</div>`
 					

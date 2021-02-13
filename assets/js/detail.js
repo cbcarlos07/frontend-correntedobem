@@ -102,7 +102,7 @@ const loadPicture = () => {
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="member" data-aos="fade-up" data-aos-delay="100">
                         <div class="pic">
-                            <img src="${host}/foto/${e.foto}" alt="">
+                            <img class="img img-fluid" src="${host}/foto/${e.foto}" alt="" width="300">
                         </div>
                         <h4>${e.title}</h4>
                         <span>${e.subtitle}</span>                        
