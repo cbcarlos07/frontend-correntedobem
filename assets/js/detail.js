@@ -7,16 +7,21 @@ socket.on('posts', msg => {
 socket.on('equipe', msg => {  
 	searchData()
 })
+socket.on('foto', msg => {  
+	loadPicture()
+})
 
 
 const searchParams = new URLSearchParams(window.location.search)
-
+let param = searchParams.get( 'id' )
 $(()=>{
     searchData()
     loadMenu()
+    loadPicture()
+    sizeScreen()
 })
 const searchData = () => {
-    let param = searchParams.get( 'id' )
+    
     
     $.ajax({
         url: `${host}/site/area/${param}`,
@@ -81,3 +86,47 @@ const loadMenu = () =>{
         </ul>`
     )
 }
+
+const loadPicture = () => {
+    $.ajax({
+        url: `${host}/site/foto/${param}`,
+        type: 'get',
+        dataType: 'json'
+    }).then(response => {
+        const fotos = $('.fotos')
+        fotos.html('')
+        let items = ''
+        if(response.length > 0){
+            response.forEach(e => {
+                items += `
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="member" data-aos="fade-up" data-aos-delay="100">
+                        <div class="pic">
+                            <img src="${host}/foto/${e.foto}" alt="">
+                        </div>
+                        <h4>${e.title}</h4>
+                        <span>${e.subtitle}</span>                        
+                    </div>
+                </div>`
+            })
+        }
+        fotos.html( items )
+    })
+
+    
+}
+
+const sizeScreen = () => {
+    var w = document.documentElement.clientWidth;
+    var h = document.documentElement.clientHeight;
+    //575 323
+    //console.log("Your screen resolution is: " + w + "x" + h);
+    if( (w < 575) || (w == 375) ){
+        $('.vertical-line').css({display: 'none'})
+    }else{
+        $('.vertical-line').css({display: 'block'})
+    }    
+    
+}
+
+window.onresize = sizeScreen

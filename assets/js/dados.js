@@ -50,7 +50,9 @@ const loadPosts = () => {
 					subarea += `
 					<div class="col-lg-4 col-md-6" data-aos="zoom-in">
 						<div class="box">
-							<div class="icon"><a href="detalhe.html?id=${el.id}"> <img src="${host}/foto/${el.icon}"> </a></div>
+							<div class="icon"><a href="detalhe.html?id=${el.id}"> 
+								<img style="border-radius: 150%" src="${host}/foto/${el.icon}" width="50"> </a>
+							</div>
 							<h4 class="title"><a href="detalhe.html?id=${el.id}">${el.title}</a></h4>
 							<p class="description">${el.description.slice(0,120)}...</p>
 						</div>
