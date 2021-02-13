@@ -54,7 +54,7 @@ const loadPosts = () => {
 								<img style="border-radius: 150%" src="${host}/foto/${el.icon}" width="50"> </a>
 							</div>
 							<h4 class="title"><a href="detalhe.html?id=${el.id}">${el.title}</a></h4>
-							<p class="description">${el.description.slice(0,120)}...</p>
+							<p class="description">${el.short_text || '' }</p>
 						</div>
 					</div>`
 					
