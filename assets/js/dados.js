@@ -11,12 +11,26 @@ socket.on('tema', msg => {
 	theme()
 })
 
+socket.on('contato', msg => {  
+	dadosContato()
+})
+
+socket.on('acoes', msg => {  
+	acoes()
+})
+
+socket.on('acoes-item', msg => {  
+	listaDeAcoes()
+})
+
 
 
 $(()=>{
 	theme()
 	loadMenu()
 	loadPosts()
+	dadosContato()
+	sizeScreen()
 })
 
 
@@ -83,98 +97,105 @@ const loadPosts = () => {
 			</section>
 			`
 		});
-		
+
 		item += `
 		<section id="facts">
-		<div class="container values" data-aos="fade-up">
-		</div>
+			<div class="container actions" data-aos="fade-up"></div>
 		</section>
 		`
 		
-		item += `<section id="contact">
-		<div class="container">
-		<div class="section-header">
-		<h3 class="section-title">Contato</h3>
+		item += `
+		<section id="facts">
+			<div class="container values" data-aos="fade-up"></div>
+		</section>
+		`
 		
-		</div>
-		</div>
-		
-		<!-- Uncomment below if you wan to use dynamic maps -->
-		
-		
-		<div class="container mt-5">
-		<div class="row justify-content-center">
-		
-		<div class="col-lg-3 col-md-4">
-		
-		<div class="info">
-		<div>
-		<i class="fa fa-map-marker"></i>
-		<p>A108 Adam Street<br>New York, NY 535022</p>
-		</div>
-		
-		<div>
-		<i class="fa fa-envelope"></i>
-		<p>info@example.com</p>
-		</div>
-		
-		<div>
-		<i class="fa fa-phone"></i>
-		<p>+1 5589 55488 55s</p>
-		</div>
-		</div>
-		
-		<div class="social-links">
-		<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
-		<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-		<a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
-		<a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
-		<a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
-		</div>
-		
-		</div>
-		
-		<div class="col-lg-5 col-md-8">
-			<div class="form">
-				<form  method="post" role="form" class="php-email-form" onsubmit="return sendMessage(event);">
-					<div class="form-group">
-						<input type="text" name="name" class="form-control" id="name" placeholder="Seu nome" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-						<div class="validate"></div>
-						<span class="erroNome text-danger"></span>
-					</div>
-
-					<div class="form-group">
-						<input type="email" class="form-control" name="email" id="email" placeholder="Seu Email" data-rule="email" data-msg="Please enter a valid email" />
-						<div class="validate"></div>
-						<span class="erroEmail text-danger"></span>
-					</div>
-		
-					<div class="form-group">
-						<textarea class="form-control" id="message" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Mensagem"></textarea>
-						<div class="validate"></div>
-						<span class="erroMessage text-danger"></span>
-					</div>
-
-					<div class="mb-3">
-						<div class="loading">Loading</div>
-						<div class="error-message"></div>
-						<div class="sent-message text-red">Your message has been sent. Thank you!</div>
-					</div>
-
-					<div class="text-center"><button type="submit">Enviar mensagem</button></div>
-
-				</form>
+		item += `
+		<section id="contact">
+			<div class="container">
+				<div class="section-header">
+					<h3 class="section-title">Contato</h3>
+				</div>
 			</div>
-		</div>
 		
-		</div>
+			<!-- Uncomment below if you wan to use dynamic maps -->
 		
-		</div>
-		</section><!-- End Contact Section -->`
+		
+			<div class="container mt-5">
+				<div class="row justify-content-center">
+		
+					<div class="col-lg-3 col-md-4">
+		
+						<div class="info">
+							<div>
+								<i class="fa fa-map-marker"></i>
+								<p cl>A108 Adam Street<br>New York, NY 535022</p>
+							</div>
+		
+							<div>
+								<i class="fa fa-envelope"></i>
+								<p>info@example.com</p>
+							</div>
+		
+							<div>
+								<i class="fa fa-phone"></i>
+								<p>+1 5589 55488 55s</p>
+							</div>
+						</div>
+		
+						<div class="social-links">
+							<a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+							<a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+							<a href="#" class="instagram"><i class="fa fa-instagram"></i></a>
+							<a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+							<a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+						</div>
+		
+					</div>
+		
+					<div class="col-lg-5 col-md-8">
+						<div class="form">
+							<form  method="post" role="form" class="php-email-form" onsubmit="return sendMessage(event);">
+								<div class="form-group">
+									<input type="text" name="name" class="form-control" id="name" placeholder="Seu nome" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+									<div class="validate"></div>
+									<span class="erroNome text-danger"></span>
+								</div>
+
+								<div class="form-group">
+									<input type="email" class="form-control" name="email" id="email" placeholder="Seu Email" data-rule="email" data-msg="Please enter a valid email" />
+									<div class="validate"></div>
+									<span class="erroEmail text-danger"></span>
+								</div>
+					
+								<div class="form-group">
+									<textarea class="form-control" id="message" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Mensagem"></textarea>
+									<div class="validate"></div>
+									<span class="erroMessage text-danger"></span>
+								</div>
+
+								<div class="mb-3">
+									<div class="loading">Loading</div>
+									<div class="error-message"></div>
+									<div class="sent-message text-red">Your message has been sent. Thank you!</div>
+								</div>
+
+								<div class="text-center"><button type="submit">Enviar mensagem</button></div>
+
+							</form>
+						</div>
+					</div>
+		
+				</div>
+		
+			</div>
+		</section>`
 		
 		$('#main').html( item )
 		valores()
 		redesSociais()
+		dadosContato()
+		acoes()
 	})
 	
 }
@@ -250,13 +271,58 @@ const redesSociais = () => {
 	})
 }
 
+const acoes = () => {
+
+	const actions = $('.actions')
+	actions.append('')
+	$.ajax({
+		url: `${host}/site/acoes`,
+		dataType: 'json'
+	}).then(response => {
+
+		let dados = `
+		<div class="section-header">
+			<h3 class="section-title">${response[0].title}</h3>
+			<p class="section-description">${response[0].description}</p>
+		</div>
+
+		<div class="row counters action-list">
+		
+		</div>
+		`
+		
+		actions.html( dados )
+		listaDeAcoes()
+	})
+
+}
+
+const listaDeAcoes = () => {
+	$.ajax({
+		url: `${host}/site/acoes-item`,
+		type: 'get',
+		dataType: 'json'
+	}).then(response => {
+		let items = ''
+		response.forEach(r => {
+			items += `
+				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12 text-center">
+					<span data-toggle="counter-up">${ r.value }</span>
+					<p>${r.description}</p>
+				</div>			
+			`
+		})
+		$('.action-list').html( items )
+	})
+}
+
 const dadosContato = () => {
 	$.ajax({
 		url: `${host}/site/contato`,
 		type: 'get',
 		dataType: 'json'
 	}).then(response => {
-		let data = response[0]
+		let data = response[0]		
 		let dados = `
 		<div>
 			<i class="fa fa-map-marker"></i>
@@ -273,7 +339,7 @@ const dadosContato = () => {
 			<p>${data.telefone}</p>
 		</div>
 		`
-
+		$('.info').html('')
 		$('.info').html( dados )
 	})
 }
@@ -292,12 +358,12 @@ const valores = () => {
 		</div>
 
 		<div class="row counters">
-			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12col-6 text-center">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-6 text-center">
 				<span data-toggle="counter-up">R$ ${formatPrice( String( response[0].value ) )}</span>
 				<p>Arrecadado</p>
 			</div>
 		
-			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12col-6 text-center">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-6 text-center">
 				<span data-toggle="counter-up">R$ ${formatPrice( String( response[0].spent ) )}</span>
 				<p>Despesa</p>
 			</div>
@@ -317,7 +383,7 @@ const formatPrice = value =>{
 	return valueString.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-const theme = () =>{
+const theme = (option = 0) =>{
 	$.ajax({
 		url: `${host}/site/tema`,
 		type: 'get',
@@ -325,7 +391,27 @@ const theme = () =>{
 	}).then(response => {
 		let dados = response[0]
 		$('.tema').text(dados.tema)
-		$('.tema-description').text( dados.description )		
-		$('#hero').css({background: `url(${host}/foto/${dados.image}) `})
+		$('.tema-description').text( dados.description )
+		if( option == 0 )
+			$('#hero').css({background: `url(${host}/foto/${dados.image}) `})
+		else{
+			$('#hero').css({background: `url(${host}/foto/${dados.image_small}) `})
+		}	
 	})
 }
+
+
+const sizeScreen = () => {
+    var w = document.documentElement.clientWidth;
+    var h = document.documentElement.clientHeight;
+    //575 323
+    console.log("Your screen resolution is: " + w + "x" + h);
+    if( (w < 575) || (w == 375) ){
+        theme(1)
+    }else{
+        theme()
+    }    
+    
+}
+
+window.onresize = sizeScreen

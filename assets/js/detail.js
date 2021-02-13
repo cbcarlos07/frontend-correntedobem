@@ -123,6 +123,7 @@ const sizeScreen = () => {
     //console.log("Your screen resolution is: " + w + "x" + h);
     if( (w < 575) || (w == 375) ){
         $('.vertical-line').css({display: 'none'})
+        $('#mobile-nav-toggle').html('')
     }else{
         $('.vertical-line').css({display: 'block'})
     }    
