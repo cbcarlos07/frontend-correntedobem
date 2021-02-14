@@ -5,10 +5,14 @@ socket.on('quem', msg => {
 	searchData()
 })
 
+socket.on('tema', msg => {  
+	theme()
+})
 
 $(()=>{
     searchData()
     loadMenu()
+    theme()
 })
 
 const loadMenu = () =>{
@@ -37,4 +41,29 @@ const searchData = () => {
         }
         
     })
+}
+
+
+
+const theme = (option = 0) =>{
+	$.ajax({
+		url: `${host}/site/tema`,
+		type: 'get',
+		dataType: 'json'
+	}).then(response => {
+		let dados = response[0]
+		
+		$('#logo').html(
+			`
+			<a href="/">
+				<img src="${host}/foto/${dados.logo}" alt="">
+			</a>
+			`
+		)
+		if( option == 0 )
+			$('#hero').css({background: `url(${host}/foto/${dados.image}) `})
+		else{
+			$('#hero').css({background: `url(${host}/foto/${dados.image_small}) `})
+		}	
+	})
 }

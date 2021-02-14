@@ -390,8 +390,16 @@ const theme = (option = 0) =>{
 		dataType: 'json'
 	}).then(response => {
 		let dados = response[0]
+		
 		$('.tema').text(dados.tema)
 		$('.tema-description').text( dados.description )
+		$('#logo').html(
+			`
+			<a href="/">
+				<img src="${host}/foto/${dados.logo}" alt="">
+			</a>
+			`
+		)
 		if( option == 0 )
 			$('#hero').css({background: `url(${host}/foto/${dados.image}) `})
 		else{
