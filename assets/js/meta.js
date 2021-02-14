@@ -9,6 +9,7 @@ socket.on('meta', msg => {
 $(()=>{
     searchData()
     loadMenu()
+    theme()
 })
 
 const loadMenu = () =>{
@@ -35,4 +36,29 @@ const searchData = () => {
             $('.img').html(`<img src="${host}/foto/${dados.image}" class="img-fluid">`)
         
     })
+}
+
+
+
+const theme = (option = 0) =>{
+	$.ajax({
+		url: `${host}/site/tema`,
+		type: 'get',
+		dataType: 'json'
+	}).then(response => {
+		let dados = response[0]
+		
+		$('#logo').html(
+			`
+			<a href="/">
+				<img src="${host}/foto/${dados.logo}" alt="">
+			</a>
+			`
+		)
+		if( option == 0 )
+			$('#hero').css({background: `url(${host}/foto/${dados.image}) `})
+		else{
+			$('#hero').css({background: `url(${host}/foto/${dados.image_small}) `})
+		}	
+	})
 }
