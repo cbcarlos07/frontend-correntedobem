@@ -358,12 +358,12 @@ const valores = () => {
 		</div>
 
 		<div class="row counters">
-			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-6 text-center">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 text-center">
 				<span data-toggle="counter-up">R$ ${formatPrice( String( response[0].value ) )}</span>
 				<p>Arrecadado</p>
 			</div>
 		
-			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-6 text-center">
+			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 text-center">
 				<span data-toggle="counter-up">R$ ${formatPrice( String( response[0].spent ) )}</span>
 				<p>Despesa</p>
 			</div>
