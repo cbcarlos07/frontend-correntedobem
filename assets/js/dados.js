@@ -22,6 +22,9 @@ socket.on('acoes', msg => {
 socket.on('acoes-item', msg => {  
 	listaDeAcoes()
 })
+socket.on('parceiros', msg => {  
+	parceiros()
+})
 
 
 
@@ -190,14 +193,60 @@ const loadPosts = () => {
 		
 			</div>
 		</section>`
+
+		item += `
+		<section id="team" class="parceiro">
+			<div class="container" data-aos="fade-up">
+				<div class="section-header">
+					<h3 class="section-title">Parceiros</h3>				
+				</div>
+				<div class="row parceiros">
+					
+				</div>	
+
+
+			</div>
+		</section><!-- End Team Section -->
+		`
 		
 		$('#main').html( item )
 		valores()
 		redesSociais()
 		dadosContato()
 		acoes()
+		parceiros()
 	})
 	
+}
+
+const parceiros = () => {
+	$.ajax({
+		url: `${host}/site/parceiros`,
+		type: 'get',
+		dataType: 'json'
+	}).then(response => {
+		let items = ''
+		if( response.length > 0 ){
+			$('.parceiro').css({display: 'block'})
+			response.forEach(r => {
+				items += `
+				<div class="col-lg-3 col-md-6 col-xs-12 col-sm-12 ">
+					<div class="member" data-aos="fade-up" data-aos-delay="100">
+	
+						<div class="pic"><img src="${host}/foto/${r.image}" alt="" width="150"></div>
+
+					</div>
+				</div>
+				`
+			})
+
+		}else{
+			$('.parceiro').css({display: 'none'})
+		}
+
+		$('.parceiros').html(items)
+		
+	})
 }
 
 const sendMessage = (e) => {
