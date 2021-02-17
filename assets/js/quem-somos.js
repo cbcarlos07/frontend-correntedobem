@@ -31,12 +31,12 @@ const searchData = () => {
     }).then(response => {
         let dados = response[0]
         
-        $('.description').html( `${dados.description}` )
+        $('.description').html( `${dados.description}` ).css({'padding-top': '20px'})
         
         
         if( dados.image ){
             $('#mobile-nav-toggle').html('')
-            $('.img').html(`<img src="${host}/foto/${dados.image}" class="img-fluid" width="360">`)
+            $('.img').html(`<img src="${host}/foto/${dados.image}" class="img-fluid" width="100">`)
 
         }
         

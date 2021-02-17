@@ -35,10 +35,10 @@ const searchData = () => {
     
         $('.title').html( `${response.title}` )
         
-        $('.description').html( `${response.description}` )
+        $('.description').html( `${response.description}` ).css({'padding-top': '20px'})
         
         if( response.logo )
-            $('.img').html(`<img src="${host}/foto/${response.logo}" class="img-fluid">`)
+            $('.img').html(`<img src="${host}/foto/${response.logo}" class="img-fluid" width="200">`)
         team( response.id )
     })
 }
@@ -103,10 +103,10 @@ const loadPicture = () => {
         if(response.length > 0){
             response.forEach(e => {
                 items += `
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="member" data-aos="fade-up" data-aos-delay="100">
                         <div class="pic">
-                            <img class="img img-fluid" src="${host}/foto/${e.foto}" alt="" width="300">
+                            <img class="img img-fluid" src="${host}/foto/${e.foto}" alt="" width="650">
                         </div>
                         <h4>${e.title}</h4>
                         <span>${e.subtitle}</span>                        

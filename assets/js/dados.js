@@ -232,8 +232,11 @@ const parceiros = () => {
 				items += `
 				<div class="col-lg-3 col-md-6 col-xs-12 col-sm-12 ">
 					<div class="member" data-aos="fade-up" data-aos-delay="100">
-	
-						<div class="pic"><img src="${host}/foto/${r.image}" alt="" width="150"></div>
+						<div class="pic">
+						<img class="img img-fluid" src="${host}/foto/${r.image}" alt="" width="150" max-height="150">
+						
+						<h4 style="padding-top: 12px">${r.title}</h4>
+                        </div>
 
 					</div>
 				</div>
