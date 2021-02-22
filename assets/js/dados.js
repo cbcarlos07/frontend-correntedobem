@@ -56,7 +56,7 @@ const loadPosts = () => {
 				<div class="row">
 					<div class="col-12">
 						<div class="text-center">
-							<img class="img img-fluid" src="${host}/foto/${element.logo}">
+							<img class="img img-fluid" src="${aws}/${element.logo}">
 						</div>
 					</div>
 				</div>
@@ -69,7 +69,7 @@ const loadPosts = () => {
 					<div class="col-lg-4 col-md-6" data-aos="zoom-in">
 						<div class="box">
 							<div class="icon"><a href="detalhe.html?id=${el.id}"> 
-								<img style="border-radius: 150%" src="${host}/foto/${el.icon}" width="50"> </a>
+								<img style="border-radius: 150%" src="${aws}/${el.icon}" width="50"> </a>
 							</div>
 							<h4 class="title"><a href="detalhe.html?id=${el.id}">${el.title}</a></h4>
 							<p class="description">${desc}</p>
@@ -200,7 +200,7 @@ const loadPosts = () => {
 				<div class="section-header">
 					<h3 class="section-title">Parceiros</h3>				
 				</div>
-				<div class="row parceiros">
+				<div class="row parceiros" style="padding-top: 35px">
 					
 				</div>	
 
@@ -233,7 +233,7 @@ const parceiros = () => {
 				<div class="col-lg-3 col-md-6 col-xs-12 col-sm-12 ">
 					<div class="member" data-aos="fade-up" data-aos-delay="100">
 						<div class="pic">
-						<img class="img img-fluid" src="${host}/foto/${r.image}" alt="" width="150" max-height="150">
+						<img class="img img-fluid" src="${aws}/${r.image}" alt="" width="150" max-height="150">
 						
 						<h4 style="padding-top: 12px">${r.title}</h4>
                         </div>
@@ -448,14 +448,14 @@ const theme = (option = 0) =>{
 		$('#logo').html(
 			`
 			<a href="/">
-				<img src="${host}/foto/${dados.logo}" alt="">
+				<img src="${aws}/${dados.logo}" alt="">
 			</a>
 			`
 		)
 		if( option == 0 )
-			$('#hero').css({background: `url(${host}/foto/${dados.image}) `})
+			$('#hero').css({background: `url(${aws}/${dados.image}) `})
 		else{
-			$('#hero').css({background: `url(${host}/foto/${dados.image_small}) `})
+			$('#hero').css({background: `url(${aws}/${dados.image_small}) `})
 		}	
 	})
 }

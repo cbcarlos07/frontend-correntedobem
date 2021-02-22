@@ -51,10 +51,10 @@ const team = id => {
     }).then(response => {
         
         let item = ''
+        let photos = ''
+        
         response.forEach(element => {
             let team = ''
-            
-
             if( element.team ){
                 
                 
@@ -62,6 +62,17 @@ const team = id => {
                     team += `
                         <li>${t.name}</li>
                     `
+                    photos += `
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="member" data-aos="fade-up" data-aos-delay="100">
+                            <div class="pic">
+                                <img class="img img-fluid" src="${host}/foto/${t.photo}" alt="" width="650">
+                            </div>
+                            <h4>${t.name}</h4>
+                            <span>${t.subtitle}</span>
+                        </div>
+                    </div>`
+                    
                 })
                 
                 item += `<li>
@@ -72,6 +83,21 @@ const team = id => {
                         </li>`
             }else{
                 item += `<li>${element.name}</li>`
+                const arrName = element.name.split(' ')
+                if( element.photo != null ){
+                    console.log('tem foto');
+                    photos += `
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                        <div class="member" data-aos="fade-up" data-aos-delay="100">
+                            <div class="pic">
+                                <img class="img img-fluid" src="${host}/foto/${element.photo}" alt="" >
+                            </div>
+                            <span>${arrName[0]}</span>
+                            <p><strong>${element.subtitle}</strong></p>
+                        </div>
+                    </div>
+                    `
+                }
             }
             
         });
@@ -79,6 +105,8 @@ const team = id => {
             $('.line').addClass('v1')
             $('.equipe').html('<strong>Equipe</strong>')
             $('.equipe').append( item )
+            
+            $('.photos').html( photos )
         }
     })
 }
@@ -108,8 +136,8 @@ const loadPicture = () => {
                         <div class="pic">
                             <img class="img img-fluid" src="${host}/foto/${e.foto}" alt="" width="650">
                         </div>
-                        <h4>${e.title}</h4>
-                        <span>${e.subtitle}</span>                        
+                        <span>${e.subtitle}</span>
+                        <p><strong>${e.title}</strong></p>                        
                     </div>
                 </div>`
             })
