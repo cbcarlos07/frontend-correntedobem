@@ -9,10 +9,15 @@ socket.on('tema', msg => {
 	theme()
 })
 
+socket.on('quemsomosfotos', msg => {  
+	loadPicture()
+})
+
 $(()=>{
     searchData()
     loadMenu()
     theme()
+	loadPicture()
 })
 
 const loadMenu = () =>{
@@ -36,8 +41,7 @@ const searchData = () => {
         
         if( dados.image ){
             $('#mobile-nav-toggle').html('')
-            $('.img').html(`<img src="${host}/foto/${dados.image}" class="img-fluid" width="100">`)
-
+            $('.img').html(`<img src="${aws}/${dados.image}" class="img-fluid" width="100">`)
         }
         
     })
@@ -66,4 +70,35 @@ const theme = (option = 0) =>{
 			$('#hero').css({background: `url(${host}/foto/${dados.image_small}) `})
 		}	
 	})
+}
+
+
+const loadPicture = () => {
+	console.log('loadPicture');
+    $.ajax({
+        url: `${host}/site/quem-somos-fotos`,
+        type: 'get',
+        dataType: 'json'
+    }).then(response => {
+        const fotos = $('.fotos')
+        fotos.html('')
+        let items = ''
+        if(response.length > 0){
+            response.forEach(e => {
+                items += `
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="member" data-aos="fade-up" data-aos-delay="100">
+                        <div class="pic text-center">
+                            <img class="img img-fluid" src="${aws}/${e.photo}" alt="" style="max-height: 600px; max-width: 1000px;" >
+                        </div>
+                        <p class="text-center"><strong>${e.title}</strong></p>                        
+                        <p class="text-center">${e.subtitle}</p>
+                    </div>
+                </div>`
+            })
+        }
+        fotos.html( items )
+    })
+
+    
 }

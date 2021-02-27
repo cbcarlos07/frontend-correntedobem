@@ -453,9 +453,20 @@ const theme = (option = 0) =>{
 			`
 		)
 		if( option == 0 )
-			$('#hero').css({background: `url(${aws}/${dados.image}) `})
+			$('#hero').css({
+							background: `url(${aws}/${dados.image})`, 
+							'background-repeat':'no-repeat',
+							'background-size':'100% 100%',
+							'width': '100%',
+  							'height': '100vh'
+						})
 		else{
-			$('#hero').css({background: `url(${aws}/${dados.image_small}) `})
+			console.log('imagem pequena');
+			$('#hero').css(
+							{background: `url(${aws}/${dados.image_small}) `,
+							'background-repeat':'no-repeat',
+							'background-size':'100% 100%',
+						})
 		}	
 	})
 }
@@ -466,7 +477,7 @@ const sizeScreen = () => {
     var h = document.documentElement.clientHeight;
     //575 323
     console.log("Your screen resolution is: " + w + "x" + h);
-    if( (w < 575) || (w == 375) ){
+    if( (w <=  1024) ){
         theme(1)
     }else{
         theme()
