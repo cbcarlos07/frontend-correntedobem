@@ -1,5 +1,5 @@
 const socket = io(host)
-
+const idioma = lang == 'pt' ? '' : `_${lang}`
 
 socket.on('posts', msg => {  
 	loadPosts()
@@ -443,8 +443,8 @@ const theme = (option = 0) =>{
 	}).then(response => {
 		let dados = response[0]
 		
-		$('.tema').text(dados.tema)
-		$('.tema-description').text( dados.description )
+		$('.tema').text(dados[`tema${idioma}`])
+		$('.tema-description').text( dados[`description_${idioma}`] )
 		$('#logo').html(
 			`
 			<a href="/">
@@ -467,7 +467,9 @@ const theme = (option = 0) =>{
 							'background-repeat':'no-repeat',
 							'background-size':'100% 100%',
 						})
-		}	
+		}
+		
+		$('.btn-get-started').text( dados[`text_btn${idioma}`] )
 	})
 }
 
