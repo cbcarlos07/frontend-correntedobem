@@ -442,9 +442,9 @@ const theme = (option = 0) =>{
 		dataType: 'json'
 	}).then(response => {
 		let dados = response[0]
-		const logo = dados[`logo${idioma}`] || dados.logo
+		const logo = dados[`logo${idioma}`] || dados.logo		
 		$('.tema').text(dados[`tema${idioma}` ] || dados.tema)
-		$('.tema-description').text( dados[`description_${idioma}`] || dados.description )
+		$('.tema-description').text( dados[`description${idioma}`] || dados.description )
 		$('#logo').html(
 			`
 			<a href="/">
