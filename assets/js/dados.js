@@ -442,13 +442,13 @@ const theme = (option = 0) =>{
 		dataType: 'json'
 	}).then(response => {
 		let dados = response[0]
-		
-		$('.tema').text(dados[`tema${idioma}`])
-		$('.tema-description').text( dados[`description_${idioma}`] )
+		const logo = dados[`logo${idioma}`] || dados.logo
+		$('.tema').text(dados[`tema${idioma}` ] || dados.tema)
+		$('.tema-description').text( dados[`description_${idioma}`] || dados.description )
 		$('#logo').html(
 			`
 			<a href="/">
-				<img src="${aws}/${dados.logo}" alt="">
+				<img src="${aws}/${logo}" alt="">
 			</a>
 			`
 		)
@@ -469,7 +469,7 @@ const theme = (option = 0) =>{
 						})
 		}
 		
-		$('.btn-get-started').text( dados[`text_btn${idioma}`] )
+		$('.btn-get-started').text( dados[`text_btn${idioma}`] || dados.text_btn)
 	})
 }
 
