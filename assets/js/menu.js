@@ -10,7 +10,7 @@ const loadMenu = () => {
 		var item = ''
 		response.forEach( m =>{
 			item += `<li>
-						<a href="${m.url}">${m.name}</a>
+						<a href="${m.url}">${m[`name${idioma}`] || m.name}</a>
 			        </li>`
 		} )
 		//console.log('item',item);

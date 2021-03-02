@@ -64,14 +64,16 @@ const loadPosts = () => {
 			}
 			if( element.subarea ) {
 				element.subarea.forEach(el => {
-					let desc = el.short_text || `${el.description.slice(0,120)}...`
+					const shortText = el[`short_text${idioma}`] || el.short_text
+					const description = el[`description${idioma}`] || el.description
+					let desc =  shortText || `${description.slice(0,120)}...`
 					subarea += `
 					<div class="col-lg-4 col-md-6" data-aos="zoom-in">
 						<div class="box">
 							<div class="icon"><a href="detalhe.html?id=${el.id}"> 
 								<img style="border-radius: 150%" src="${aws}/${el.icon}" width="50"> </a>
 							</div>
-							<h4 class="title"><a href="detalhe.html?id=${el.id}">${el.title}</a></h4>
+							<h4 class="title"><a href="detalhe.html?id=${el.id}">${el[`title${idioma}`] || el.title}</a></h4>
 							<p class="description">${desc}</p>
 						</div>
 					</div>`
@@ -84,8 +86,8 @@ const loadPosts = () => {
 					<div class="row about-container">
 						<div class="col-lg-12 content order-lg-1 order-2">
 							<div class="section-header">
-								<h3 class="section-title">${element.title}</h3>              
-								<p class="section-description">${element.description}</p>
+								<h3 class="section-title">${element[`title${idioma}`] || element.title }</h3>              
+								<p class="section-description">${element[`description${idioma}`] || element.description}</p>
 							</div>
 							${logo}
 							<div class="row">
@@ -334,8 +336,8 @@ const acoes = () => {
 
 		let dados = `
 		<div class="section-header">
-			<h3 class="section-title">${response[0].title}</h3>
-			<p class="section-description">${response[0].description}</p>
+			<h3 class="section-title">${response[0][`title${idioma}`] || response[0].title}</h3>
+			<p class="section-description">${response[0][`description${idioma}`] || response[0].description}</p>
 		</div>
 
 		<div class="row counters action-list">
@@ -360,7 +362,7 @@ const listaDeAcoes = () => {
 			items += `
 				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-12 text-center">
 					<span data-toggle="counter-up">${ r.value }</span>
-					<p>${r.description}</p>
+					<p>${r[`description${idioma}`] || r.description}</p>
 				</div>			
 			`
 		})
