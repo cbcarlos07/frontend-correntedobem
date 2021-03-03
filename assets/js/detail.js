@@ -60,7 +60,7 @@ const team = id => {
                 
                 element.team.forEach(t => {
                     team += `
-                        <li>${t.name}</li>
+                        ${t.name}
                     `
                     photos += `
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -75,14 +75,13 @@ const team = id => {
                     
                 })
                 
-                item += `<li>
-                            <strong>${element.name}</strong>
-                            <ul style="list-style-type:none;">
+                item += `<br><div style="padding-top: 15px"><strong ">${element.name}</strong></div>
                                ${team}
-                            </ul>
-                        </li>`
+                           </div>    
+                        `
+                            
             }else{
-                item += `<li>${element.name}</li>`
+                item += `<div style="padding-top: 15px">${element.name}</div>`
                 const arrName = element.name.split(' ')
                 if( element.photo != null && element.photo != '' ){
                     console.log('tem foto');
