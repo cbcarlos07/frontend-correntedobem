@@ -66,7 +66,7 @@ const team = id => {
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="member" data-aos="fade-up" data-aos-delay="100">
                             <div class="pic">
-                                <img class="img img-fluid" src="${host}/foto/${t.photo}" alt="" width="650">
+                                <img class="img img-fluid" src="${aws}/${t.photo}" alt="" width="650">
                             </div>
                             <h4>${t.name}</h4>
                             <span>${t.subtitle}</span>
@@ -84,13 +84,13 @@ const team = id => {
             }else{
                 item += `<li>${element.name}</li>`
                 const arrName = element.name.split(' ')
-                if( element.photo != null ){
+                if( element.photo != null && element.photo != '' ){
                     console.log('tem foto');
                     photos += `
                     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                         <div class="member" data-aos="fade-up" data-aos-delay="100">
                             <div class="pic">
-                                <img class="img img-fluid" src="${host}/foto/${element.photo}" alt="" >
+                                <img class="img img-fluid" src="${aws}/${element.photo}" alt="" >
                             </div>
                             <span>${arrName[0]}</span>
                             <p><strong>${element.subtitle}</strong></p>
@@ -125,6 +125,7 @@ const loadPicture = () => {
         type: 'get',
         dataType: 'json'
     }).then(response => {
+        
         const fotos = $('.fotos')
         fotos.html('')
         let items = ''
