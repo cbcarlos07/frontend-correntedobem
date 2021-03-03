@@ -75,13 +75,13 @@ const team = id => {
                     
                 })
                 
-                item += `<br><div style="padding-top: 15px"><strong ">${element.name}</strong></div>
+                item += `<div style="padding-top: 15px"><strong>${element.name}</strong></div>
                                ${team}
                            </div>    
                         `
                             
             }else{
-                item += `<div style="padding-top: 15px">${element.name}</div>`
+                item += `<div  style="padding-top: 15px">${element.name}</div>`
                 const arrName = element.name.split(' ')
                 if( element.photo != null && element.photo != '' ){
                     console.log('tem foto');

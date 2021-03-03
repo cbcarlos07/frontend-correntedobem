@@ -1,6 +1,18 @@
 const socket = io(host)
 const idioma = lang == 'pt' ? '' : `_${lang}`
 
+const idiomaContato = {
+	pt: 'Contato',
+	es: 'Contacto',
+	en: 'Contact'
+}
+
+const idiomaParceiros = {
+	pt: 'Parceiros',
+	es: 'Socios',
+	en: 'Partners'
+}
+
 socket.on('posts', msg => {  
 	loadPosts()
 })
@@ -119,7 +131,7 @@ const loadPosts = () => {
 		<section id="contact">
 			<div class="container">
 				<div class="section-header">
-					<h3 class="section-title">Contato</h3>
+					<h3 class="section-title">${idiomaContato[lang]}</h3>
 				</div>
 			</div>
 		
@@ -200,7 +212,7 @@ const loadPosts = () => {
 		<section id="team" class="parceiro">
 			<div class="container" data-aos="fade-up">
 				<div class="section-header">
-					<h3 class="section-title">Parceiros</h3>				
+					<h3 class="section-title">${idiomaParceiros[lang]}</h3>				
 				</div>
 				<div class="row parceiros" style="padding-top: 35px">
 					
@@ -407,19 +419,19 @@ const valores = () => {
 	}).then(response => {
 		let dados = `
 		<div class="section-header">
-			<h3 class="section-title">Transparência</h3>
-			<p class="section-description">${response[0].description}</p>
+			<h3 class="section-title">${response[0][`title${idioma}`] || response[0].title}</h3>
+			<p class="section-description">${response[0][`description${idioma}`] || response[0].description}</p>
 		</div>
 
 		<div class="row counters">
 			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 text-center">
 				<span data-toggle="counter-up">R$ ${formatPrice( String( response[0].value ) )}</span>
-				<p>Arrecadado</p>
+				<p>${response[0][`subtitle_value${idioma}`] || response[0].subtitle_value}</p>
 			</div>
 		
 			<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12 text-center">
 				<span data-toggle="counter-up">R$ ${formatPrice( String( response[0].spent ) )}</span>
-				<p>Despesa</p>
+				<p>${response[0][`subtitle_spent${idioma}`] || response[0].subtitle_spent}</p>
 			</div>
 		
 		
