@@ -54,6 +54,7 @@ const team = id => {
         let photos = ''
         
         response.forEach(element => {
+            console.log('element',element);
             let team = ''
             if( element.team ){
                 
@@ -62,16 +63,19 @@ const team = id => {
                     team += `
                         ${t.name}
                     `
-                    photos += `
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="member" data-aos="fade-up" data-aos-delay="100">
-                            <div class="pic">
-                                <img class="img img-fluid" src="${aws}/${t.photo}" alt="" width="650">
+                    if( t.photo != "" ){
+                        photos += `
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="member" data-aos="fade-up" data-aos-delay="100">
+                                <div class="pic">
+                                    <img class="img img-fluid" src="${aws}/${t.photo}" alt="" width="650">
+                                </div>
+                                <h4>${t.name}</h4>
+                                <span>${t.subtitle}</span>
                             </div>
-                            <h4>${t.name}</h4>
-                            <span>${t.subtitle}</span>
-                        </div>
-                    </div>`
+                        </div>`
+
+                    }
                     
                 })
                 
@@ -81,21 +85,25 @@ const team = id => {
                         `
                             
             }else{
+                
                 item += `<div  style="padding-top: 15px">${element.name}</div>`
                 const arrName = element.name.split(' ')
                 if( element.photo != null && element.photo != '' ){
                     console.log('tem foto');
-                    photos += `
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="member" data-aos="fade-up" data-aos-delay="100">
-                            <div class="pic">
-                                <img class="img img-fluid" src="${aws}/${element.photo}" alt="" >
+                    if( element.photo != "" ){
+                        photos += `
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="member" data-aos="fade-up" data-aos-delay="100">
+                                <div class="pic">
+                                    <img class="img img-fluid" src="${aws}/${element.photo}" alt="" >
+                                </div>
+                                <span>${arrName[0]}</span>
+                                <p><strong>${element.subtitle}</strong></p>
                             </div>
-                            <span>${arrName[0]}</span>
-                            <p><strong>${element.subtitle}</strong></p>
                         </div>
-                    </div>
-                    `
+                        `
+
+                    }
                 }
             }
             
