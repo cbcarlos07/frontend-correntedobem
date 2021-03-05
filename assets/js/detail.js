@@ -54,14 +54,14 @@ const team = id => {
         let photos = ''
         
         response.forEach(element => {
-            console.log('element',element);
+            
             let team = ''
             if( element.team ){
                 
                 
                 element.team.forEach(t => {
                     team += `
-                        ${t.name}
+                        ${t.name}<br>
                     `
                     if( t.photo != "" ){
                         photos += `
