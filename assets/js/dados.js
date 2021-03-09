@@ -157,11 +157,7 @@ const loadPosts = () => {
 								<i class="fa fa-envelope"></i>
 								<p>info@example.com</p>
 							</div>
-		
-							<div>
-								<i class="fa fa-phone"></i>
-								<p>+1 5589 55488 55s</p>
-							</div>
+
 						</div>
 		
 						<div class="social-links">
@@ -393,22 +389,37 @@ const dadosContato = () => {
 		dataType: 'json'
 	}).then(response => {
 		let data = response[0]		
-		let dados = `
-		<div>
-			<i class="fa fa-map-marker"></i>
-			<p>${data.endereco}</p>
-		</div>
+		let dados = ''
+		if( data.endereco != '' ){
+			dados += `
+			<div>
+				<i class="fa fa-map-marker"></i>
+				<p>${data.endereco}</p>
+			</div>
+			`
+		}
 
-		<div>
-			<i class="fa fa-envelope"></i>
-			<p>${data.email}</p>
-		</div>
+		if( data.email != '' ){
+			dados += `
+			<div>
+				<i class="fa fa-envelope"></i>
+				<p>${data.email}</p>
+			</div>
+			`
+		}
+		
+		if( data.telefone ){
+			dados += `
+			<div>
+				<i class="fa fa-phone"></i>
+				<p>${data.telefone}</p>
+			</div>
+			`
+		}
 
-		<div>
-			<i class="fa fa-phone"></i>
-			<p>${data.telefone}</p>
-		</div>
-		`
+		
+		
+		
 		$('.info').html('')
 		$('.info').html( dados )
 	})
