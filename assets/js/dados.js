@@ -130,11 +130,12 @@ const loadPosts = () => {
 		</section>
 		`
 		
+
 		item += `
 		<section id="contact">
 			<div class="container">
 				<div class="section-header">
-					<h3 class="section-title">${idiomaContato[lang]}</h3>
+					<h3 class="section-title">${idiomaContato[lang == '' ? 'pt' : lang]}</h3>
 				</div>
 			</div>
 		
@@ -215,7 +216,7 @@ const loadPosts = () => {
 		<section id="team" class="parceiro">
 			<div class="container" data-aos="fade-up">
 				<div class="section-header">
-					<h3 class="section-title">${idiomaParceiros[lang]}</h3>				
+					<h3 class="section-title">${idiomaParceiros[lang == '' ? 'pt' : lang]}</h3>				
 				</div>
 				<div class="row parceiros" style="padding-top: 35px">
 					
