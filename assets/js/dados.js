@@ -19,6 +19,9 @@ socket.on('posts', msg => {
 socket.on('menu', msg => {  
 	loadMenu()
 })
+socket.on('transp', msg => {  
+	valores()
+})
 socket.on('tema', msg => {  
 	theme()
 })
